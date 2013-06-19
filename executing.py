@@ -1,3 +1,5 @@
+import math
+
 class Executor:
 	def __init__(self, stocks, knowledge_base):
 		self.knowledge_base = knowledge_base
@@ -7,9 +9,13 @@ class Executor:
 		action = plan["action"]
 
 		if action is "buy":
-			self.stocks.buySellStock(plan["amount"])
+			max_buyable_amount = int(math.floor(self.stocks.checkBank() / self.stocks.checkPrice()))
+			amount = min(plan["amount"], max_buyable_amount)
+			self.stocks.buy(amount)
 		elif action is "sell":
-			self.stocks.buySellStock(plan["amount"] * -1)
+			max_sellable_amount = self.stocks.checkAmount()
+			amount = min(plan["amount"], max_sellable_amount)
+			self.stocks.sell(amount)
 		else:
 			# Holding - do nothing
 			pass
