@@ -48,7 +48,11 @@ def run_stock_loop(number_of_iterations):
 	final_value = myStocks.checkBank()
 	print("Made ${0}".format(final_value - initial_value))
 
-run_stock_loop(100)
+def main():
+	run_stock_loop(100)
+
+if __name__ == "__main__":
+	main()
 
 '''
 print "initial value"
