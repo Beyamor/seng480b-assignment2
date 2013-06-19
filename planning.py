@@ -4,19 +4,20 @@ class Planner:
 	def __init__(self, knowledge_base):
 		self.knowledge_base = knowledge_base
 
-	def plan(self, stock_held, stock_price, money):
-		plan = None
+	def plan(self, stock_trend):
+		direction = stock_trend["direction"]
+		magnitude = stock_trend["magnitude"]
 
-		if self.knowledge_base.is_rising(stock_price) and money > 0:
-			amount_to_buy = math.floor(money / stock_price)
-			plan = {'action': 'buy', 'amount': amount_to_buy}
+		change_amount = magnitude
+		if direction is "falling":
+			change_amount *= -1
 
-		elif self.knowledge_base.is_falling(stock_price):
-			amount_to_sell = stock_held
-			plan = {'action': 'sell', 'amount': amount_to_sell}
+		buy_or_sell = self.knowledge_base.buyOrSell(change_amount)
+		amount = abs(buy_or_sell)
 
+		if buy_or_sell > 0:
+			return {"action": "buy", "amount": amount}
+		elif buy_or_sell < 0:
+			return {"action": "sell", "amount": amount}
 		else:
-			plan = {'action': 'hold'}
-
-		self.knowledge_base.record_plan(plan)
-		return plan
+			return {"action": "hold"}

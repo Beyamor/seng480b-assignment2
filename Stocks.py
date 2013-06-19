@@ -29,4 +29,5 @@ class Stocks(object):
         x = random.randint(-10,10)
         self.Price += x
 
-
+    def __str__(self):
+	    return "Price: {0}, amount: {1}, bank: {2}".format(self.Price, self.Amount, self.Bank)

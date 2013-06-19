@@ -25,7 +25,7 @@ class KnowledgeBase(object):
             return 1
         elif amountChange < 5:
             return 5
-        elif amountChange < 10:
+        elif amountChange <= 10:
             return 10
     
     #store info of most recent stockPrice
