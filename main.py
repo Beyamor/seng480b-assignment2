@@ -1,17 +1,20 @@
 from Stocks import Stocks
 from KnowledgeBase import KnowledgeBase
-from AutonomicFunctions import monitor, analyze
+from monitoring import Monitor
+from analyzing import Analyzer
 from planning import Planner
 from executing import Executor
 
 myStocks = Stocks(initialPrice=100, initialNumber=0, initialBank=5000)
 knowledge_base = KnowledgeBase(500)
+monitor = Monitor(myStocks)
+analyzer = Analyzer(knowledge_base)
 planner = Planner(knowledge_base)
 executor = Executor(myStocks, knowledge_base)
 
 def mapek_iteration():
-	currentStockPrice = monitor(myStocks)
-	stock_trend = analyze(knowledge_base, currentStockPrice)
+	currentStockPrice = monitor.monitor()
+	stock_trend = analyzer.analyze(currentStockPrice)
 	plan = planner.plan(stock_trend)
 	executor.execute(plan)
 
