@@ -24,9 +24,9 @@ def run_stock_loop(number_of_iterations):
 	for i in range(number_of_iterations):
 		myStocks.stockFlux()
 		mapek_iteration()
-		print(myStocks)
+		#print(myStocks)
 
-	print("\nSelling remaining {0} stocks for ${1}".format(myStocks.checkAmount(), myStocks.quantity_value(myStocks.checkAmount())))
+	#print("\nSelling remaining {0} stocks for ${1}".format(myStocks.checkAmount(), myStocks.quantity_value(myStocks.checkAmount())))
 	myStocks.sell(myStocks.checkAmount())
 	final_value = myStocks.checkBank()
 	print("Made ${0}".format(final_value - initial_value))
