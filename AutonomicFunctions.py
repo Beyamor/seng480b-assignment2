@@ -12,7 +12,7 @@ def monitor(stock):
 def analyze(knowledge_base, currentStockPrice):
     #Use monitor return and check against knowledge base
     stock_difference = currentStockPrice - knowledge_base.lastPrice
-    knowledge_base.mostRecentStockPrice(currentStockPrice)
+    knowledge_base.doAnalyze(currentStockPrice)
 
     direction = None
     if stock_difference > 0:
