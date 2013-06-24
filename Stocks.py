@@ -49,5 +49,9 @@ class Stocks(object):
         x = random.randint(-10,10)
         self.Price = max(1, self.Price + x)
 
+    def get_total_worth(self):
+	    return self.Bank + self.quantity_value(self.Amount)
+
+
     def __str__(self):
 	    return "Price: ${0}, amount: {1}, bank: ${2}".format(self.Price, self.Amount, self.Bank)
